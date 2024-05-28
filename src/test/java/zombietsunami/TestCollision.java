@@ -13,8 +13,12 @@ import zombietsunami.model.obstaclemodel.impl.BreakableImpl;
 import zombietsunami.model.obstaclemodel.impl.ObstacleManagerImpl;
 import zombietsunami.model.personmodel.api.Person;
 import zombietsunami.model.personmodel.api.PersonsManager;
+import zombietsunami.model.personmodel.api.SecondPerson;
+import zombietsunami.model.personmodel.api.SecondPersonsManager;
 import zombietsunami.model.personmodel.impl.PersonImpl;
 import zombietsunami.model.personmodel.impl.PersonsManagerImpl;
+import zombietsunami.model.personmodel.impl.SecondPersonImpl;
+import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
 import zombietsunami.model.zombiemodel.impl.ZombieImpl;
 import zombietsunami.model.CollisionImpl;
 import zombietsunami.model.MapData;
@@ -38,7 +42,9 @@ class TestCollision {
     private final Breakable breakable = new BreakableImpl(1);
     private final ObstacleManager obstacleManager = new ObstacleManagerImpl();
     private final Person person = new PersonImpl();
+    private final SecondPerson secondPerson = new SecondPersonImpl();
     private final PersonsManager personsManager = new PersonsManagerImpl();
+    private final SecondPersonsManager secondPersonsManager = new SecondPersonsManagerImpl();
     private final CollisionImpl collision = new CollisionImpl();
     private final GameMap gameMap = new GameMapImpl();
 
@@ -67,6 +73,7 @@ class TestCollision {
         obstacleManager.getBreakableList().add(0, breakable);
         obstacleManager.getBombList().add(0, bomb);
         personsManager.getPersonList().add(0, person);
+        secondPersonsManager.getSecondPersonList().add(0, secondPerson);
         zombie.increaseStrength();
         zombie.increaseStrength();
         zombie.increaseStrength();
@@ -74,7 +81,7 @@ class TestCollision {
         zombie.increaseStrength();
         collision.collisionZombieObstacle(obstacleManager.getBombList(), obstacleManager.getBreakableList(),
                 MapData.getTitSize(), zombie, gameMap);
-        collision.collisionZombiePersons(personsManager.getPersonList(),
+        collision.collisionZombiePersons(personsManager.getPersonList(), secondPersonsManager.getSecondPersonList(),
                 MapData.getTitSize(), zombie, gameMap);
         assertNull(obstacleManager.getBombList().get(0));
         assertNull(obstacleManager.getBreakableList().get(0));

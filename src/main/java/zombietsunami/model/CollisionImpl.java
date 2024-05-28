@@ -8,6 +8,7 @@ import zombietsunami.model.mapmodel.api.GameMap;
 import zombietsunami.model.obstaclemodel.api.Bomb;
 import zombietsunami.model.obstaclemodel.api.Breakable;
 import zombietsunami.model.personmodel.api.Person;
+import zombietsunami.model.personmodel.api.SecondPerson;
 
 /**
  * Class whose purpose is to manage all the collisions
@@ -74,15 +75,17 @@ public class CollisionImpl implements Collision {
     }
 
     /**
-     * Checks when the zombie hit a Person.
+     * Checks when the zombie hit a Persons.
      * 
-     * @param personList the Person list
-     * @param tileSize   the size of one tile
-     * @param zombie     the Zombie entity
-     * @param gameMap    the game map
+     * @param personList       the Person list
+     * @param secondPersonList the SecondPersonList
+     * @param tileSize         the size of one tile
+     * @param zombie           the Zombie entity
+     * @param gameMap          the game map
      */
     @Override
-    public void collisionZombiePersons(final List<Person> personList, final int tileSize,
+    public void collisionZombiePersons(final List<Person> personList, final List<SecondPerson> secondPersonList,
+            final int tileSize,
             final Zombie zombie, final GameMap gameMap) {
         for (int i = personList.size() - 1; i >= 0; i--) {
             if (!personList.isEmpty() && personList.get(i) != null && personList.get(i).getX() > THRESHOLD_1
@@ -91,6 +94,18 @@ public class CollisionImpl implements Collision {
                     && zombie.getScreenY() < personList.get(i).getY() + tileSize) {
                 zombie.increaseStrength();
                 personList.set(i, null);
+                gameMap.removePersonListItem(i);
+            }
+        }
+        for (int i = secondPersonList.size() - 1; i >= 0; i--) {
+            if (!secondPersonList.isEmpty() && secondPersonList.get(i) != null
+                    && secondPersonList.get(i).getX() > THRESHOLD_1
+                    && secondPersonList.get(i).getX() < THRESHOLD_2
+                    && zombie.getScreenY() > secondPersonList.get(i).getY() - tileSize
+                    && zombie.getScreenY() < secondPersonList.get(i).getY() + tileSize) {
+                zombie.increaseStrength();
+                zombie.increaseStrength();
+                secondPersonList.set(i, null);
                 gameMap.removePersonListItem(i);
             }
         }

@@ -23,8 +23,8 @@ public class DrawPersonImpl implements DrawPerson {
     private static final int FRAMESCHANGE = 15;
     private static final String SEP = "/";
     private static final String ROOT = SEP + "zombietsunami" + SEP + "person" + SEP;
-    private static final String PERSON_00 = ROOT + "person_10.png";
-    private static final String PERSON_01 = ROOT + "person_11.png";
+    private static final String PERSON_10 = ROOT + "person_10.png";
+    private static final String PERSON_11 = ROOT + "person_11.png";
 
     /**
      * Draws the Person on the graphics context based on the same controller.
@@ -78,9 +78,9 @@ public class DrawPersonImpl implements DrawPerson {
         BufferedImage image = null;
         try {
             if (change) {
-                image = ImageIO.read(DrawPersonImpl.class.getResource(PERSON_00));
+                image = ImageIO.read(DrawPersonImpl.class.getResource(PERSON_10));
             } else {
-                image = ImageIO.read(DrawPersonImpl.class.getResource(PERSON_01));
+                image = ImageIO.read(DrawPersonImpl.class.getResource(PERSON_11));
             }
             increaseChange();
             if (getChange() > FRAMESCHANGE) {

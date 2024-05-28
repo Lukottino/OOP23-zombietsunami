@@ -133,6 +133,21 @@ public final class VControllerImpl implements VController {
         return this.control.personList();
     }
 
+    @Override
+    public void setSecondPersonFromMapC() {
+        this.control.setSecondPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getSecondPersonListC() {
+        return this.control.getSecondPersonList();
+    }
+
+    @Override
+    public List<Integer> secondPersonIndexListC() {
+        return this.control.secondPersonList();
+    }
+
     /**
      * Gets the strength of the zombie.
      *

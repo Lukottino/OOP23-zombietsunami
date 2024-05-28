@@ -131,6 +131,21 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
+    public void setSecondPersonFromMap() {
+        this.model.setSecondPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getSecondPersonList() {
+        return this.model.getSecondPersonList();
+    }
+
+    @Override
+    public List<Integer> secondPersonList() {
+        return this.model.getSecondPersonList();
+    }
+
+    @Override
     public void collisionZombiePersons() {
         this.model.collisionZombiePersons();
     }

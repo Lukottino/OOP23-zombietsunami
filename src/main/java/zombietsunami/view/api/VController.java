@@ -120,6 +120,21 @@ public interface VController {
   List<Integer> personIndexListC();
 
   /**
+   * Sets the list of SecondPerson from the map.
+   */
+  void setSecondPersonFromMapC();
+
+  /**
+   * @return the SecondPerson list
+   */
+  List<Integer> getSecondPersonListC();
+
+  /**
+   * @return the list of integers in the SecondPerson's map txt file
+   */
+  List<Integer> secondPersonIndexListC();
+
+  /**
    * Gets the current strength of the zombie character in the game.
    *
    * @return The strength of the zombie character.

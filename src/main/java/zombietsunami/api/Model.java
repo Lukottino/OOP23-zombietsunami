@@ -60,9 +60,19 @@ public interface Model {
   List<Integer> getPersonList();
 
   /**
+   * @return the SecondPerson list
+   */
+  List<Integer> getSecondPersonList();
+
+  /**
    * Sets the Person list from the map.
    */
   void setPersonFromMap();
+
+  /**
+   * Sets the SecondPerson list from the map.
+   */
+  void setSecondPersonFromMap();
 
   /**
    * @return the strenght of the zombie

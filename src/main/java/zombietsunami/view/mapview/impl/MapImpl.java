@@ -21,6 +21,8 @@ import zombietsunami.view.zombieview.api.DrawZombie;
 import zombietsunami.view.zombieview.impl.DrawZombieImpl;
 import zombietsunami.view.personview.api.DrawPerson;
 import zombietsunami.view.personview.impl.DrawPersonImpl;
+import zombietsunami.view.personview.api.DrawSecondPerson;
+import zombietsunami.view.personview.impl.DrawSecondPersonImpl;
 
 /**
  * This class implements the Map interface
@@ -50,6 +52,7 @@ public final class MapImpl extends JPanel implements Map, Runnable {
     private final transient DrawZombie drawZombie;
     private final transient DrawObstacle drawObstacle;
     private final transient DrawPerson drawPerson;
+    private final transient DrawSecondPerson drawSecondPerson;
     private final transient KeyHandler keyH;
 
     /**
@@ -68,6 +71,7 @@ public final class MapImpl extends JPanel implements Map, Runnable {
         this.drawZombie = new DrawZombieImpl();
         this.drawObstacle = new DrawObstacleImpl();
         this.drawPerson = new DrawPersonImpl();
+        this.drawSecondPerson = new DrawSecondPersonImpl();
         this.setPreferredSize(new DimensionUIResource(controller.getScreenWC(), controller.getScreenHC()));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -117,6 +121,8 @@ public final class MapImpl extends JPanel implements Map, Runnable {
                     controller.titleSizeC(), this.controller);
             this.drawPerson.drawPersonV(g2, controller.personIndexListC(), controller.screenTilePosC(),
                     controller.titleSizeC(), this.controller);
+            this.drawSecondPerson.drawSecondPersonV(g2, controller.secondPersonIndexListC(),
+                    controller.screenTilePosC(), controller.titleSizeC(), this.controller);
             this.drawZombie.drawZombieV(g2, controller);
             drawInfo(g2);
             if (isPause()) {
@@ -187,8 +193,8 @@ public final class MapImpl extends JPanel implements Map, Runnable {
      * This method end the game after 3 seconds.
      */
     @SuppressFBWarnings(justification = "After we interrupt the thread, the use"
-     + " of System.out() is a wanted choice of design for this game, that will" 
-     + "shut down the entire virtual machine")
+            + " of System.out() is a wanted choice of design for this game, that will"
+            + "shut down the entire virtual machine")
     private void isOver() {
         final Logger logger = Logger.getLogger(MapImpl.class.getName());
         try {

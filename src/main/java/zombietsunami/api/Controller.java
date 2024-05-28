@@ -128,6 +128,22 @@ public interface Controller {
   List<Integer> personList();
 
   /**
+   * Sets the SecondPerson list from the map.
+   */
+  void setSecondPersonFromMap();
+
+  /**
+   * @return the SecondPerson list.
+   */
+  List<Integer> getSecondPersonList();
+
+  /**
+   * List of SecondPerson.
+   * @return the list of SecondPerson
+   */
+  List<Integer> secondPersonList();
+
+  /**
    * @return the zombie's screen X coordiante
    *         {@link zombietsunami.model.zombiemodel.api.Zombie}
    */

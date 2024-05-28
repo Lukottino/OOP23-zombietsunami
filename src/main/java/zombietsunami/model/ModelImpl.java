@@ -15,6 +15,8 @@ import zombietsunami.model.zombiemodel.api.Zombie;
 import zombietsunami.model.zombiemodel.impl.ZombieImpl;
 import zombietsunami.model.personmodel.api.PersonsManager;
 import zombietsunami.model.personmodel.impl.PersonsManagerImpl;
+import zombietsunami.model.personmodel.api.SecondPersonsManager;
+import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
 
 /**
  * This class is the Model of the MVC and implements the Model interface
@@ -25,6 +27,7 @@ public final class ModelImpl implements Model {
     private final GameMap gameMap;
     private final Zombie zombie;
     private final PersonsManager personsManager;
+    private final SecondPersonsManager secondPersonsManager;
     private final MightWin win;
     private final GameOver gameOver;
     private final ObstacleManager obstacleManager;
@@ -37,6 +40,7 @@ public final class ModelImpl implements Model {
         this.gameMap = new GameMapImpl();
         this.zombie = new ZombieImpl();
         this.personsManager = new PersonsManagerImpl();
+        this.secondPersonsManager = new SecondPersonsManagerImpl();
         this.win = new MightWinImpl();
         this.gameOver = new GameOverImpl();
         this.obstacleManager = new ObstacleManagerImpl();
@@ -45,7 +49,8 @@ public final class ModelImpl implements Model {
 
     @Override
     public void fillBombListFromMap() {
-        this.obstacleManager.fillBombListFromMap(gameMap.getLoadedObstacleList(), getScreenTilePos(), zombie.getStrength());
+        this.obstacleManager.fillBombListFromMap(gameMap.getLoadedObstacleList(), getScreenTilePos(),
+                zombie.getStrength());
     }
 
     @Override
@@ -91,13 +96,25 @@ public final class ModelImpl implements Model {
     }
 
     @Override
+    public List<Integer> getSecondPersonList() {
+        return this.gameMap.getLoadedPersonList();
+    }
+
+    @Override
     public void setPersonFromMap() {
         this.personsManager.setPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos(), zombie.getStrength());
     }
 
     @Override
+    public void setSecondPersonFromMap() {
+        this.secondPersonsManager.setSecondPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos(),
+                zombie.getStrength());
+    }
+
+    @Override
     public void collisionZombiePersons() {
-        this.collisionManager.collisionZombiePersons(personsManager.getPersonList(), MapData.getTitSize(), this.zombie,
+        this.collisionManager.collisionZombiePersons(personsManager.getPersonList(),
+                secondPersonsManager.getSecondPersonList(), MapData.getTitSize(), this.zombie,
                 gameMap);
     }
 
@@ -148,7 +165,8 @@ public final class ModelImpl implements Model {
 
     @Override
     public void fillBreakableListFromMap() {
-        this.obstacleManager.fillBreakableListFromMap(gameMap.getLoadedObstacleList(), getScreenTilePos(), zombie.getStrength());
+        this.obstacleManager.fillBreakableListFromMap(gameMap.getLoadedObstacleList(), getScreenTilePos(),
+                zombie.getStrength());
     }
 
     @Override
@@ -168,8 +186,8 @@ public final class ModelImpl implements Model {
 
     @Override
     public void collisionZombieObstacle() {
-        this.collisionManager.collisionZombieObstacle(obstacleManager.getBombList(), 
-            obstacleManager.getBreakableList(), MapData.getTitSize(), zombie, gameMap);
+        this.collisionManager.collisionZombieObstacle(obstacleManager.getBombList(),
+                obstacleManager.getBreakableList(), MapData.getTitSize(), zombie, gameMap);
     }
 
 }
