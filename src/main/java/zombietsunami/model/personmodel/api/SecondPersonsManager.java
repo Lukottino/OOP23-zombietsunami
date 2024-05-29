@@ -26,7 +26,7 @@ public interface SecondPersonsManager {
     /**
      * Sets the SecondPerson list from the map.
      * 
-     * @param secondPersonlist The list of SecondPerson.
+     * @param secondpersonlist The list of SecondPerson.
      * @param coords           The coordinates of SecondPerson.
      * @param strenght         The strenght of SecondPerson.
      */
