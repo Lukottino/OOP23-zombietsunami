@@ -31,8 +31,7 @@ class TestPersonManager {
         personsManager.setPersonFromMap(gameMap.getLoadedPersonList(),
                 gameMap.getScreenTilePos(MapData.getMaxWorldRow(), MapData.getMaxWorldCol(),
                         MapData.getTitSize(), zombie.getX(), zombie.getY(),
-                        this.zombie.getScreenX(), this.zombie.getScreenY()),
-                zombie.getStrength());
+                        this.zombie.getScreenX(), this.zombie.getScreenY()));
 
         assertNotEquals(personsManager.getPersonList().size(), 0);
     }

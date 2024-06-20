@@ -17,6 +17,8 @@ import zombietsunami.model.personmodel.api.PersonsManager;
 import zombietsunami.model.personmodel.impl.PersonsManagerImpl;
 import zombietsunami.model.personmodel.api.SecondPersonsManager;
 import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
+import zombietsunami.model.personmodel.api.FallPersonsManager;
+import zombietsunami.model.personmodel.impl.FallPersonsManagerImpl;
 
 /**
  * This class is the Model of the MVC and implements the Model interface
@@ -28,6 +30,7 @@ public final class ModelImpl implements Model {
     private final Zombie zombie;
     private final PersonsManager personsManager;
     private final SecondPersonsManager secondPersonsManager;
+    private final FallPersonsManager fallPersonsManager;
     private final MightWin win;
     private final GameOver gameOver;
     private final ObstacleManager obstacleManager;
@@ -41,6 +44,7 @@ public final class ModelImpl implements Model {
         this.zombie = new ZombieImpl();
         this.personsManager = new PersonsManagerImpl();
         this.secondPersonsManager = new SecondPersonsManagerImpl();
+        this.fallPersonsManager = new FallPersonsManagerImpl();
         this.win = new MightWinImpl();
         this.gameOver = new GameOverImpl();
         this.obstacleManager = new ObstacleManagerImpl();
@@ -101,20 +105,38 @@ public final class ModelImpl implements Model {
     }
 
     @Override
+    public List<Integer> getFallPersonList() {
+        return this.gameMap.getLoadedPersonList();
+    }
+
+    @Override
     public void setPersonFromMap() {
-        this.personsManager.setPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos(), zombie.getStrength());
+        this.personsManager.setPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
     }
 
     @Override
     public void setSecondPersonFromMap() {
-        this.secondPersonsManager.setSecondPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos(),
-                zombie.getStrength());
+        this.secondPersonsManager.setSecondPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
     }
+
+    @Override
+    public void setFallPersonFromMap() {
+        this.fallPersonsManager.setFallPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
+    }
+
+    /*
+     * @Override
+     * public void updateFallPerson() {
+     * this.fallPersonsManager.updateFallPerson(gameMap.getLoadedPersonList(),
+     * getScreenTilePos());
+     * }
+     */
 
     @Override
     public void collisionZombiePersons() {
         this.collisionManager.collisionZombiePersons(personsManager.getPersonList(),
-                secondPersonsManager.getSecondPersonList(), MapData.getTitSize(), this.zombie,
+                secondPersonsManager.getSecondPersonList(), fallPersonsManager.getFallPersonList(),
+                MapData.getTitSize(), this.zombie,
                 gameMap);
     }
 

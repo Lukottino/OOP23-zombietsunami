@@ -30,8 +30,8 @@ public class PersonsManagerImpl implements PersonsManager {
      * 
      * @return the Person list.
      */
-    @SuppressFBWarnings(justification = "Persons inside personList must be" 
-        + " set null when colliding in CollisionImpl, otherwise the code won't work.")
+    @SuppressFBWarnings(justification = "Persons inside personList must be"
+            + " set null when colliding in CollisionImpl, otherwise the code won't work.")
     @Override
     public List<Person> getPersonList() {
         return personList;
@@ -41,8 +41,7 @@ public class PersonsManagerImpl implements PersonsManager {
      * Returns the list of Person from the map.
      */
     @Override
-    public void setPersonFromMap(final List<Integer> personlist, final List<Pair<Integer, Integer>> coords,
-            final Integer strenght) {
+    public void setPersonFromMap(final List<Integer> personlist, final List<Pair<Integer, Integer>> coords) {
         personList = new ArrayList<>();
         for (int i = 0; i < personlist.size(); i++) {
             if (personlist.get(i) == 1 && coords.get(i) != null) {

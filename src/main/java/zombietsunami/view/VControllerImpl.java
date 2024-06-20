@@ -17,8 +17,8 @@ public final class VControllerImpl implements VController {
 
     @Override
     @SuppressFBWarnings(justification = "The controller fild of this class"
-    + "must be the same as the one passed in the method, that will "
-    + "change and get different results.")
+            + "must be the same as the one passed in the method, that will "
+            + "change and get different results.")
     public void set(final Controller c) {
         this.control = c;
 
@@ -147,6 +147,28 @@ public final class VControllerImpl implements VController {
     public List<Integer> secondPersonIndexListC() {
         return this.control.secondPersonList();
     }
+
+    @Override
+    public void setFallPersonFromMapC() {
+        this.control.setFallPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getFallPersonListC() {
+        return this.control.getFallPersonList();
+    }
+
+    @Override
+    public List<Integer> fallPersonIndexListC() {
+        return this.control.fallPersonList();
+    }
+
+    /*
+     * @Override
+     * public void updateFallPersonC() {
+     * this.control.updateFallPerson();
+     * }
+     */
 
     /**
      * Gets the strength of the zombie.

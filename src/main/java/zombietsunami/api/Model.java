@@ -65,6 +65,11 @@ public interface Model {
   List<Integer> getSecondPersonList();
 
   /**
+   * @return the FallPerson list
+   */
+  List<Integer> getFallPersonList();
+
+  /**
    * Sets the Person list from the map.
    */
   void setPersonFromMap();
@@ -73,6 +78,19 @@ public interface Model {
    * Sets the SecondPerson list from the map.
    */
   void setSecondPersonFromMap();
+
+  /**
+   * Sets the FallPerson list from the map.
+   */
+  void setFallPersonFromMap();
+
+  /**
+   * Calls the FallPerson's update method
+   * {@link zombietsunami.model.personmodel.api.FallPerson}.
+   */
+  /*
+   * void updateFallPerson();
+   */
 
   /**
    * @return the strenght of the zombie
@@ -127,10 +145,10 @@ public interface Model {
    */
   boolean isWin();
 
-    /**
-     * Returns the list of breakables from the map.
-     */
-    void fillBreakableListFromMap();
+  /**
+   * Returns the list of breakables from the map.
+   */
+  void fillBreakableListFromMap();
 
   /**
    * Checks when the zombie hit a Person.
@@ -150,13 +168,13 @@ public interface Model {
    */
   boolean isNotEnough();
 
-    /**
-     * @return true if the zombie's strenght is zero
-     */
-    boolean isStrenghtZero();
+  /**
+   * @return true if the zombie's strenght is zero
+   */
+  boolean isStrenghtZero();
 
-    /**
-     * Checks if zombie collides with Obstacle.
-     */
-    void collisionZombieObstacle();
+  /**
+   * Checks if zombie collides with Obstacle.
+   */
+  void collisionZombieObstacle();
 }

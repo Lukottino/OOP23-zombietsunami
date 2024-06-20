@@ -9,6 +9,7 @@ import zombietsunami.model.obstaclemodel.api.Bomb;
 import zombietsunami.model.obstaclemodel.api.Breakable;
 import zombietsunami.model.personmodel.api.Person;
 import zombietsunami.model.personmodel.api.SecondPerson;
+import zombietsunami.model.personmodel.api.FallPerson;
 
 /**
  * Class whose purpose is to manage all the collisions
@@ -78,14 +79,15 @@ public class CollisionImpl implements Collision {
      * Checks when the zombie hit a Persons.
      * 
      * @param personList       the Person list
-     * @param secondPersonList the SecondPersonList
+     * @param secondPersonList the SecondPerson list
+     * @param fallPersonList   the FallPerson list
      * @param tileSize         the size of one tile
      * @param zombie           the Zombie entity
      * @param gameMap          the game map
      */
     @Override
     public void collisionZombiePersons(final List<Person> personList, final List<SecondPerson> secondPersonList,
-            final int tileSize,
+            final List<FallPerson> fallPersonList, final int tileSize,
             final Zombie zombie, final GameMap gameMap) {
         for (int i = personList.size() - 1; i >= 0; i--) {
             if (!personList.isEmpty() && personList.get(i) != null && personList.get(i).getX() > THRESHOLD_1
@@ -106,6 +108,17 @@ public class CollisionImpl implements Collision {
                 zombie.increaseStrength();
                 zombie.increaseStrength();
                 secondPersonList.set(i, null);
+                gameMap.removePersonListItem(i);
+            }
+        }
+        for (int i = fallPersonList.size() - 1; i >= 0; i--) {
+            if (!fallPersonList.isEmpty() && fallPersonList.get(i) != null
+                    && fallPersonList.get(i).getX() > THRESHOLD_1
+                    && fallPersonList.get(i).getX() < THRESHOLD_2
+                    && zombie.getScreenY() > fallPersonList.get(i).getY() - tileSize
+                    && zombie.getScreenY() < fallPersonList.get(i).getY() + tileSize) {
+                zombie.increaseStrength();
+                fallPersonList.set(i, null);
                 gameMap.removePersonListItem(i);
             }
         }

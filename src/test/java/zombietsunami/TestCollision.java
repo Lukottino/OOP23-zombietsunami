@@ -15,10 +15,14 @@ import zombietsunami.model.personmodel.api.Person;
 import zombietsunami.model.personmodel.api.PersonsManager;
 import zombietsunami.model.personmodel.api.SecondPerson;
 import zombietsunami.model.personmodel.api.SecondPersonsManager;
+import zombietsunami.model.personmodel.api.FallPerson;
+import zombietsunami.model.personmodel.api.FallPersonsManager;
 import zombietsunami.model.personmodel.impl.PersonImpl;
 import zombietsunami.model.personmodel.impl.PersonsManagerImpl;
 import zombietsunami.model.personmodel.impl.SecondPersonImpl;
 import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
+import zombietsunami.model.personmodel.impl.FallPersonImpl;
+import zombietsunami.model.personmodel.impl.FallPersonsManagerImpl;
 import zombietsunami.model.zombiemodel.impl.ZombieImpl;
 import zombietsunami.model.CollisionImpl;
 import zombietsunami.model.MapData;
@@ -43,13 +47,15 @@ class TestCollision {
     private final ObstacleManager obstacleManager = new ObstacleManagerImpl();
     private final Person person = new PersonImpl();
     private final SecondPerson secondPerson = new SecondPersonImpl();
+    private final FallPerson fallPerson = new FallPersonImpl();
     private final PersonsManager personsManager = new PersonsManagerImpl();
     private final SecondPersonsManager secondPersonsManager = new SecondPersonsManagerImpl();
+    private final FallPersonsManager fallPersonsManager = new FallPersonsManagerImpl();
     private final CollisionImpl collision = new CollisionImpl();
     private final GameMap gameMap = new GameMapImpl();
 
     /**
-     * This function generates two obstacles and a Person, namely a bomb and
+     * This function generates two obstacles and Persons, namely a bomb and
      * a breakable object. The screen coordinates of both obstacles and Person
      * are intentionally set to match those of the zombie.
      * Subsequently, these two obstacles and Person are added to their respective
@@ -74,6 +80,7 @@ class TestCollision {
         obstacleManager.getBombList().add(0, bomb);
         personsManager.getPersonList().add(0, person);
         secondPersonsManager.getSecondPersonList().add(0, secondPerson);
+        fallPersonsManager.getFallPersonList().add(0, fallPerson);
         zombie.increaseStrength();
         zombie.increaseStrength();
         zombie.increaseStrength();
@@ -82,7 +89,7 @@ class TestCollision {
         collision.collisionZombieObstacle(obstacleManager.getBombList(), obstacleManager.getBreakableList(),
                 MapData.getTitSize(), zombie, gameMap);
         collision.collisionZombiePersons(personsManager.getPersonList(), secondPersonsManager.getSecondPersonList(),
-                MapData.getTitSize(), zombie, gameMap);
+                fallPersonsManager.getFallPersonList(), MapData.getTitSize(), zombie, gameMap);
         assertNull(obstacleManager.getBombList().get(0));
         assertNull(obstacleManager.getBreakableList().get(0));
         assertNull(personsManager.getPersonList().get(0));

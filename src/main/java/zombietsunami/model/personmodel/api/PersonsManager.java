@@ -24,12 +24,12 @@ public interface PersonsManager {
     List<Person> getPersonList();
 
     /**
-   * Sets the Person list from the map.
-   * @param personlist The list of Person.
-   * @param coords The coordinates of Person.
-   * @param strenght The strenght of Person.
-   */
-    void setPersonFromMap(List<Integer> personlist, List<Pair<Integer, Integer>> coords, Integer strenght);
+     * Sets the Person list from the map.
+     * 
+     * @param personlist The list of Person.
+     * @param coords     The coordinates of Person.
+     */
+    void setPersonFromMap(List<Integer> personlist, List<Pair<Integer, Integer>> coords);
 
     /**
      * Adds a Person into the Person list.

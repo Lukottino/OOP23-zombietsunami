@@ -146,6 +146,28 @@ public final class ControllerImpl implements Controller {
     }
 
     @Override
+    public void setFallPersonFromMap() {
+        this.model.setFallPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getFallPersonList() {
+        return this.model.getFallPersonList();
+    }
+
+    @Override
+    public List<Integer> fallPersonList() {
+        return this.model.getFallPersonList();
+    }
+
+    /*
+     * @Override
+     * public void updateFallPerson() {
+     * this.model.updateFallPerson();
+     * }
+     */
+
+    @Override
     public void collisionZombiePersons() {
         this.model.collisionZombiePersons();
     }

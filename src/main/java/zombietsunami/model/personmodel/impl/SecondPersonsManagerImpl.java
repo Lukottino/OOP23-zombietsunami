@@ -41,8 +41,7 @@ public class SecondPersonsManagerImpl implements SecondPersonsManager {
      * Returns the list of SecondPerson from the map.
      */
     @Override
-    public void setSecondPersonFromMap(final List<Integer> secondpersonlist, final List<Pair<Integer, Integer>> coords,
-            final Integer strenght) {
+    public void setSecondPersonFromMap(final List<Integer> secondpersonlist, final List<Pair<Integer, Integer>> coords) {
         secondPersonList = new ArrayList<>();
         for (int i = 0; i < secondpersonlist.size(); i++) {
             if (secondpersonlist.get(i) == 2 && coords.get(i) != null) {

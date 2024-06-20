@@ -123,6 +123,7 @@ public interface Controller {
 
   /**
    * List of Person.
+   * 
    * @return the list of Person
    */
   List<Integer> personList();
@@ -139,9 +140,35 @@ public interface Controller {
 
   /**
    * List of SecondPerson.
+   * 
    * @return the list of SecondPerson
    */
   List<Integer> secondPersonList();
+
+  /**
+   * Sets the FallPerson list from the map.
+   */
+  void setFallPersonFromMap();
+
+  /**
+   * @return the FallPerson list
+   */
+  List<Integer> getFallPersonList();
+
+  /**
+   * List of FallPerson.
+   * 
+   * @return the list of FallPerson
+   */
+  List<Integer> fallPersonList();
+
+  /**
+   * Calls the FallPerson's update method
+   * {@link zombietsunami.model.personmodel.api.FallPerson}.
+   */
+  /*
+   * void updateFallPerson();
+   */
 
   /**
    * @return the zombie's screen X coordiante
@@ -181,6 +208,7 @@ public interface Controller {
   /**
    * Returns the loaded obstacle list.
    * in {@link zombietsunami.model.mapmodel.api.GameMap}
+   * 
    * @return obstacle list.
    */
   List<Integer> obstacleList();
@@ -203,34 +231,36 @@ public interface Controller {
    */
   void fillBombListFromMap();
 
-    /**
-     * Returns the list of breakables from the map.
-     */
-    void fillBreakableListFromMap();
+  /**
+   * Returns the list of breakables from the map.
+   */
+  void fillBreakableListFromMap();
 
-    /**
-     * Checks collision between zombie and Person.
-     */
-    void collisionZombiePersons();
+  /**
+   * Checks collision between zombie and Person.
+   */
+  void collisionZombiePersons();
 
-    /**
-     * Checks if the game is over.
-     * @return true if the game is over, false otherwise.
-     */
-    boolean isGameOver();
+  /**
+   * Checks if the game is over.
+   * 
+   * @return true if the game is over, false otherwise.
+   */
+  boolean isGameOver();
 
-    /**
-     * @return true if the zombie's strenght is not enough to break the breakable object in the map
-     */
-    boolean isNotEnough();
+  /**
+   * @return true if the zombie's strenght is not enough to break the breakable
+   *         object in the map
+   */
+  boolean isNotEnough();
 
-    /**
-     * @return true if the zombie's strenght is zero
-     */
-    boolean isStrenghtZero();
+  /**
+   * @return true if the zombie's strenght is zero
+   */
+  boolean isStrenghtZero();
 
-    /**
-     * Checks if the zombie collides with the Obstascle.
-     */
-    void collisionZombieObstacle();
+  /**
+   * Checks if the zombie collides with the Obstascle.
+   */
+  void collisionZombieObstacle();
 }

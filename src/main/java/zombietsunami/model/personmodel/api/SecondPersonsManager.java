@@ -28,9 +28,8 @@ public interface SecondPersonsManager {
      * 
      * @param secondpersonlist The list of SecondPerson.
      * @param coords           The coordinates of SecondPerson.
-     * @param strenght         The strenght of SecondPerson.
      */
-    void setSecondPersonFromMap(List<Integer> secondpersonlist, List<Pair<Integer, Integer>> coords, Integer strenght);
+    void setSecondPersonFromMap(List<Integer> secondpersonlist, List<Pair<Integer, Integer>> coords);
 
     /**
      * Adds a SecondPerson into the SecondPerson list.
