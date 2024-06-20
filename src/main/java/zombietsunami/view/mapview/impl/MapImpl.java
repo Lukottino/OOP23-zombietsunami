@@ -25,6 +25,8 @@ import zombietsunami.view.personview.api.DrawSecondPerson;
 import zombietsunami.view.personview.impl.DrawSecondPersonImpl;
 import zombietsunami.view.personview.api.DrawFallPerson;
 import zombietsunami.view.personview.impl.DrawFallPersonImpl;
+import zombietsunami.view.personview.api.DrawCabinPerson;
+import zombietsunami.view.personview.impl.DrawCabinPersonImpl;
 
 /**
  * This class implements the Map interface
@@ -56,6 +58,7 @@ public final class MapImpl extends JPanel implements Map, Runnable {
     private final transient DrawPerson drawPerson;
     private final transient DrawSecondPerson drawSecondPerson;
     private final transient DrawFallPerson drawFallPerson;
+    private final transient DrawCabinPerson drawCabinPerson;
     private final transient KeyHandler keyH;
 
     /**
@@ -76,6 +79,7 @@ public final class MapImpl extends JPanel implements Map, Runnable {
         this.drawPerson = new DrawPersonImpl();
         this.drawSecondPerson = new DrawSecondPersonImpl();
         this.drawFallPerson = new DrawFallPersonImpl();
+        this.drawCabinPerson = new DrawCabinPersonImpl();
         this.setPreferredSize(new DimensionUIResource(controller.getScreenWC(), controller.getScreenHC()));
         this.setBackground(Color.BLACK);
         this.setDoubleBuffered(true);
@@ -130,6 +134,8 @@ public final class MapImpl extends JPanel implements Map, Runnable {
                     controller.screenTilePosC(), controller.titleSizeC(), this.controller);
             this.drawFallPerson.drawFallPersonV(g2, controller.fallPersonIndexListC(),
                     controller.screenTilePosC(), controller.titleSizeC(), this.controller);
+            this.drawCabinPerson.drawCabinPersonV(g2, controller.cabinPersonIndexListC(), controller.screenTilePosC(),
+                    controller.titleSizeC(), this.controller);
             this.drawZombie.drawZombieV(g2, controller);
             drawInfo(g2);
             if (isPause()) {

@@ -1,6 +1,7 @@
 package zombietsunami.model;
 
 import java.util.List;
+import java.util.Random;
 
 import zombietsunami.model.zombiemodel.api.Zombie;
 import zombietsunami.api.Collision;
@@ -10,6 +11,7 @@ import zombietsunami.model.obstaclemodel.api.Breakable;
 import zombietsunami.model.personmodel.api.Person;
 import zombietsunami.model.personmodel.api.SecondPerson;
 import zombietsunami.model.personmodel.api.FallPerson;
+import zombietsunami.model.personmodel.api.CabinPerson;
 
 /**
  * Class whose purpose is to manage all the collisions
@@ -19,7 +21,8 @@ public class CollisionImpl implements Collision {
 
     private static final int THRESHOLD_1 = 70;
     private static final int THRESHOLD_2 = 95;
-
+    private static final int RANGE = 100;
+    private Random rand = new Random();
     private boolean gameOver;
 
     /**
@@ -66,7 +69,7 @@ public class CollisionImpl implements Collision {
 
     /**
      * Checks if the strength is less than 0,
-     * or if the zombie can't break the obstacle.
+     * or if the zombie can't break the obstacle or the CabinPerson.
      * 
      * @return true if the game is over, false otherwise.
      */
@@ -81,13 +84,14 @@ public class CollisionImpl implements Collision {
      * @param personList       the Person list
      * @param secondPersonList the SecondPerson list
      * @param fallPersonList   the FallPerson list
+     * @param cabinPersonList  the CabinPerson list
      * @param tileSize         the size of one tile
      * @param zombie           the Zombie entity
      * @param gameMap          the game map
      */
     @Override
     public void collisionZombiePersons(final List<Person> personList, final List<SecondPerson> secondPersonList,
-            final List<FallPerson> fallPersonList, final int tileSize,
+            final List<FallPerson> fallPersonList, final List<CabinPerson> cabinPersonList, final int tileSize,
             final Zombie zombie, final GameMap gameMap) {
         for (int i = personList.size() - 1; i >= 0; i--) {
             if (!personList.isEmpty() && personList.get(i) != null && personList.get(i).getX() > THRESHOLD_1
@@ -120,6 +124,27 @@ public class CollisionImpl implements Collision {
                 zombie.increaseStrength();
                 fallPersonList.set(i, null);
                 gameMap.removePersonListItem(i);
+            }
+        }
+        for (int i = cabinPersonList.size() - 1; i >= 0; i--) {
+            if (!cabinPersonList.isEmpty() && cabinPersonList.get(i) != null
+                    && cabinPersonList.get(i).getX() > THRESHOLD_1
+                    && cabinPersonList.get(i).getX() < THRESHOLD_2
+                    && zombie.getScreenY() > cabinPersonList.get(i).getY() - tileSize
+                    && zombie.getScreenY() < cabinPersonList.get(i).getY() + tileSize) {
+                if (cabinPersonList.get(i).canBreakCabinPerson(zombie.getStrength())) {
+                    int randomInt = rand.nextInt(RANGE);
+                    if (randomInt % 2 == 0) {
+                        zombie.increaseStrength();
+                    } else {
+                        zombie.increaseStrength();
+                        zombie.increaseStrength();
+                    }
+                    gameMap.removePersonListItem(i);
+                    cabinPersonList.set(i, null);
+                } else {
+                    gameOver = true;
+                }
             }
         }
     }

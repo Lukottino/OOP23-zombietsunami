@@ -8,6 +8,7 @@ import zombietsunami.model.obstaclemodel.api.Breakable;
 import zombietsunami.model.personmodel.api.Person;
 import zombietsunami.model.personmodel.api.SecondPerson;
 import zombietsunami.model.personmodel.api.FallPerson;
+import zombietsunami.model.personmodel.api.CabinPerson;
 import zombietsunami.model.zombiemodel.api.Zombie;
 
 /**
@@ -33,12 +34,13 @@ public interface Collision {
          * @param personList       the Person list
          * @param secondPersonList the SecondPerson list
          * @param fallPersonList   the FallPerson list
+         * @param cabinPersonList  the CabinPerson list
          * @param tileSize         the size of one tile
          * @param zombie           the Zombie entity
          * @param gameMap          the game map
          */
         void collisionZombiePersons(List<Person> personList, List<SecondPerson> secondPersonList,
-                        List<FallPerson> fallPersonList, int tileSize,
+                        List<FallPerson> fallPersonList, List<CabinPerson> cabinPersonList, int tileSize,
                         Zombie zombie, GameMap gameMap);
 
         /**

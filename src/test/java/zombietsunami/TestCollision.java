@@ -17,12 +17,16 @@ import zombietsunami.model.personmodel.api.SecondPerson;
 import zombietsunami.model.personmodel.api.SecondPersonsManager;
 import zombietsunami.model.personmodel.api.FallPerson;
 import zombietsunami.model.personmodel.api.FallPersonsManager;
+import zombietsunami.model.personmodel.api.CabinPerson;
+import zombietsunami.model.personmodel.api.CabinPersonsManager;
 import zombietsunami.model.personmodel.impl.PersonImpl;
 import zombietsunami.model.personmodel.impl.PersonsManagerImpl;
 import zombietsunami.model.personmodel.impl.SecondPersonImpl;
 import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
 import zombietsunami.model.personmodel.impl.FallPersonImpl;
 import zombietsunami.model.personmodel.impl.FallPersonsManagerImpl;
+import zombietsunami.model.personmodel.impl.CabinPersonImpl;
+import zombietsunami.model.personmodel.impl.CabinPersonsManagerImpl;
 import zombietsunami.model.zombiemodel.impl.ZombieImpl;
 import zombietsunami.model.CollisionImpl;
 import zombietsunami.model.MapData;
@@ -48,9 +52,11 @@ class TestCollision {
     private final Person person = new PersonImpl();
     private final SecondPerson secondPerson = new SecondPersonImpl();
     private final FallPerson fallPerson = new FallPersonImpl();
+    private final CabinPerson cabinPerson = new CabinPersonImpl(1);
     private final PersonsManager personsManager = new PersonsManagerImpl();
     private final SecondPersonsManager secondPersonsManager = new SecondPersonsManagerImpl();
     private final FallPersonsManager fallPersonsManager = new FallPersonsManagerImpl();
+    private final CabinPersonsManager cabinPersonsManager = new CabinPersonsManagerImpl();
     private final CollisionImpl collision = new CollisionImpl();
     private final GameMap gameMap = new GameMapImpl();
 
@@ -76,11 +82,21 @@ class TestCollision {
         person.setX(75);
         person.setY(288);
 
+        secondPerson.setX(75);
+        secondPerson.setY(288);
+
+        fallPerson.setX(75);
+        fallPerson.setY(288);
+
+        cabinPerson.setX(75);
+        cabinPerson.setY(288);
+
         obstacleManager.getBreakableList().add(0, breakable);
         obstacleManager.getBombList().add(0, bomb);
         personsManager.getPersonList().add(0, person);
         secondPersonsManager.getSecondPersonList().add(0, secondPerson);
         fallPersonsManager.getFallPersonList().add(0, fallPerson);
+        cabinPersonsManager.getCabinPersonList().add(0, cabinPerson);
         zombie.increaseStrength();
         zombie.increaseStrength();
         zombie.increaseStrength();
@@ -89,10 +105,14 @@ class TestCollision {
         collision.collisionZombieObstacle(obstacleManager.getBombList(), obstacleManager.getBreakableList(),
                 MapData.getTitSize(), zombie, gameMap);
         collision.collisionZombiePersons(personsManager.getPersonList(), secondPersonsManager.getSecondPersonList(),
-                fallPersonsManager.getFallPersonList(), MapData.getTitSize(), zombie, gameMap);
+                fallPersonsManager.getFallPersonList(), cabinPersonsManager.getCabinPersonList(), MapData.getTitSize(),
+                zombie, gameMap);
         assertNull(obstacleManager.getBombList().get(0));
         assertNull(obstacleManager.getBreakableList().get(0));
         assertNull(personsManager.getPersonList().get(0));
+        assertNull(secondPersonsManager.getSecondPersonList().get(0));
+        assertNull(fallPersonsManager.getFallPersonList().get(0));
+        assertNull(cabinPersonsManager.getCabinPersonList().get(0));
     }
 
     /**

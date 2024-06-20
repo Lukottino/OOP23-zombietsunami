@@ -77,7 +77,7 @@ public class DrawFallPersonImpl implements DrawFallPerson {
      */
     @Override
     public BufferedImage getFallPerson() {
-        final Logger logger = Logger.getLogger(DrawPersonImpl.class.getName());
+        final Logger logger = Logger.getLogger(DrawFallPersonImpl.class.getName());
         BufferedImage image = null;
         try {
             if (change) {
@@ -91,7 +91,7 @@ public class DrawFallPersonImpl implements DrawFallPerson {
                 changeCounter = 0;
             }
         } catch (IOException e) {
-            logger.severe("Errore durante il caricamento dell'immagine della persona: " + e.getMessage());
+            logger.severe("Errore durante il caricamento dell'immagine della fall persona: " + e.getMessage());
         }
         return image;
     }

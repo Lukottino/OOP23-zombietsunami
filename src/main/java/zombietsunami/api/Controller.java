@@ -163,6 +163,23 @@ public interface Controller {
   List<Integer> fallPersonList();
 
   /**
+   * Sets the CabinPerson list from the map.
+   */
+  void setCabinPersonFromMap();
+
+  /**
+   * @return the CabinPerson list
+   */
+  List<Integer> getCabinPersonList();
+
+  /**
+   * List of CabinPerson.
+   * 
+   * @return the list of CabinPerson
+   */
+  List<Integer> cabinPersonList();
+
+  /**
    * Calls the FallPerson's update method
    * {@link zombietsunami.model.personmodel.api.FallPerson}.
    */

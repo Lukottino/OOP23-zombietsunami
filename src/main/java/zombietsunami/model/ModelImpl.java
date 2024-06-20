@@ -19,6 +19,8 @@ import zombietsunami.model.personmodel.api.SecondPersonsManager;
 import zombietsunami.model.personmodel.impl.SecondPersonsManagerImpl;
 import zombietsunami.model.personmodel.api.FallPersonsManager;
 import zombietsunami.model.personmodel.impl.FallPersonsManagerImpl;
+import zombietsunami.model.personmodel.api.CabinPersonsManager;
+import zombietsunami.model.personmodel.impl.CabinPersonsManagerImpl;
 
 /**
  * This class is the Model of the MVC and implements the Model interface
@@ -31,6 +33,7 @@ public final class ModelImpl implements Model {
     private final PersonsManager personsManager;
     private final SecondPersonsManager secondPersonsManager;
     private final FallPersonsManager fallPersonsManager;
+    private final CabinPersonsManager cabinPersonsManager;
     private final MightWin win;
     private final GameOver gameOver;
     private final ObstacleManager obstacleManager;
@@ -45,6 +48,7 @@ public final class ModelImpl implements Model {
         this.personsManager = new PersonsManagerImpl();
         this.secondPersonsManager = new SecondPersonsManagerImpl();
         this.fallPersonsManager = new FallPersonsManagerImpl();
+        this.cabinPersonsManager = new CabinPersonsManagerImpl();
         this.win = new MightWinImpl();
         this.gameOver = new GameOverImpl();
         this.obstacleManager = new ObstacleManagerImpl();
@@ -110,6 +114,11 @@ public final class ModelImpl implements Model {
     }
 
     @Override
+    public List<Integer> getCabinPersonList() {
+        return this.gameMap.getLoadedPersonList();
+    }
+
+    @Override
     public void setPersonFromMap() {
         this.personsManager.setPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
     }
@@ -124,6 +133,11 @@ public final class ModelImpl implements Model {
         this.fallPersonsManager.setFallPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
     }
 
+    @Override
+    public void setCabinPersonFromMap() {
+        this.cabinPersonsManager.setCabinPersonFromMap(gameMap.getLoadedPersonList(), getScreenTilePos());
+    }
+
     /*
      * @Override
      * public void updateFallPerson() {
@@ -136,7 +150,7 @@ public final class ModelImpl implements Model {
     public void collisionZombiePersons() {
         this.collisionManager.collisionZombiePersons(personsManager.getPersonList(),
                 secondPersonsManager.getSecondPersonList(), fallPersonsManager.getFallPersonList(),
-                MapData.getTitSize(), this.zombie,
+                cabinPersonsManager.getCabinPersonList(), MapData.getTitSize(), this.zombie,
                 gameMap);
     }
 

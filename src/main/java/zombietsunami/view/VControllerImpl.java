@@ -163,6 +163,21 @@ public final class VControllerImpl implements VController {
         return this.control.fallPersonList();
     }
 
+    @Override
+    public void setCabinPersonFromMapC() {
+        this.control.setCabinPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getCabinPersonListC() {
+        return this.control.getCabinPersonList();
+    }
+
+    @Override
+    public List<Integer> cabinPersonIndexListC() {
+        return this.control.cabinPersonList();
+    }
+
     /*
      * @Override
      * public void updateFallPersonC() {

@@ -70,6 +70,11 @@ public interface Model {
   List<Integer> getFallPersonList();
 
   /**
+   * @return the CabinPerson list
+   */
+  List<Integer> getCabinPersonList();
+
+  /**
    * Sets the Person list from the map.
    */
   void setPersonFromMap();
@@ -83,6 +88,11 @@ public interface Model {
    * Sets the FallPerson list from the map.
    */
   void setFallPersonFromMap();
+
+  /**
+   * Sets the CabinPerson list from the map.
+   */
+  void setCabinPersonFromMap();
 
   /**
    * Calls the FallPerson's update method

@@ -75,7 +75,7 @@ public class DrawSecondPersonImpl implements DrawSecondPerson {
      */
     @Override
     public BufferedImage getSecondPerson() {
-        final Logger logger = Logger.getLogger(DrawPersonImpl.class.getName());
+        final Logger logger = Logger.getLogger(DrawSecondPersonImpl.class.getName());
         BufferedImage image = null;
         try {
             if (change) {

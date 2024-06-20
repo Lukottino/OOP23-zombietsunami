@@ -150,6 +150,21 @@ public interface VController {
   List<Integer> fallPersonIndexListC();
 
   /**
+   * Sets the list of CabinPerson from the map.
+   */
+  void setCabinPersonFromMapC();
+
+  /**
+   * @return the CabinPerson list
+   */
+  List<Integer> getCabinPersonListC();
+
+  /**
+   * @return the list of integers in the CabinPerson's map txt file
+   */
+  List<Integer> cabinPersonIndexListC();
+
+  /**
    * Updates the position of FallPerson in the game.
    */
   /*

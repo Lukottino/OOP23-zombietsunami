@@ -160,6 +160,21 @@ public final class ControllerImpl implements Controller {
         return this.model.getFallPersonList();
     }
 
+    @Override
+    public void setCabinPersonFromMap() {
+        this.model.setCabinPersonFromMap();
+    }
+
+    @Override
+    public List<Integer> getCabinPersonList() {
+        return this.model.getCabinPersonList();
+    }
+
+    @Override
+    public List<Integer> cabinPersonList() {
+        return this.model.getCabinPersonList();
+    }
+
     /*
      * @Override
      * public void updateFallPerson() {
