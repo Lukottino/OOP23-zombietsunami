@@ -22,7 +22,7 @@ public class CollisionImpl implements Collision {
     private static final int THRESHOLD_1 = 70;
     private static final int THRESHOLD_2 = 95;
     private static final int RANGE = 100;
-    private Random rand = new Random();
+    private final Random rand = new Random();
     private boolean gameOver;
 
     /**
@@ -133,7 +133,7 @@ public class CollisionImpl implements Collision {
                     && zombie.getScreenY() > cabinPersonList.get(i).getY() - tileSize
                     && zombie.getScreenY() < cabinPersonList.get(i).getY() + tileSize) {
                 if (cabinPersonList.get(i).canBreakCabinPerson(zombie.getStrength())) {
-                    int randomInt = rand.nextInt(RANGE);
+                    final int randomInt = rand.nextInt(RANGE);
                     if (randomInt % 2 == 0) {
                         zombie.increaseStrength();
                     } else {
