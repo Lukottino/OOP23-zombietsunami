@@ -14,8 +14,8 @@ import zombietsunami.view.api.VController;
 import zombietsunami.view.personview.api.DrawCabinPerson;
 
 /**
- * Implementation of the DrawPerson interface, responsible
- * for drawing the Person.
+ * Implementation of the DrawCabinPerson interface, responsible
+ * for drawing the CabinPerson.
  */
 public class DrawCabinPersonImpl implements DrawCabinPerson {
     private boolean change = true;
@@ -29,11 +29,11 @@ public class DrawCabinPersonImpl implements DrawCabinPerson {
     /**
      * Draws the CabinPerson on the graphics context based on the same controller.
      * 
-     * @param g2              The graphics context.
+     * @param g2                   The graphics context.
      * @param cabinPersonIndexList List of CabinPerson.
-     * @param screenTilePos   Coordinates of the CabinPerson.
-     * @param tileSize        Tile size.
-     * @param controller      The controller with the game-related information.
+     * @param screenTilePos        Coordinates of the CabinPerson.
+     * @param tileSize             Tile size.
+     * @param controller           The controller with the game-related information.
      */
     @Override
     public void drawCabinPersonV(final Graphics2D g2, final List<Integer> cabinPersonIndexList,

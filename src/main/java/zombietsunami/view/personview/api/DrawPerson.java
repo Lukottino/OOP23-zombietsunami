@@ -16,11 +16,11 @@ public interface DrawPerson {
     /**
      * Draws the Person on the graphics context based on the same controller.
      * 
-     * @param g2         The graphics context.
+     * @param g2              The graphics context.
      * @param personIndexList List of Person.
-     * @param screenTilePos Coordinates of the Person.
-     * @param tileSize Tile size.
-     * @param controller The controller with the game-related information.
+     * @param screenTilePos   Coordinates of the Person.
+     * @param tileSize        Tile size.
+     * @param controller      The controller with the game-related information.
      */
     void drawPersonV(Graphics2D g2, List<Integer> personIndexList, List<Pair<Integer, Integer>> screenTilePos,
             int tileSize, VController controller);

@@ -17,7 +17,7 @@ import zombietsunami.view.personview.api.DrawFallPerson;
 
 /**
  * Implementation of the DrawPerson interface, responsible
- * for drawing the Person.
+ * for drawing the FallPerson.
  */
 public class DrawFallPersonImpl implements DrawFallPerson {
     private boolean change = true;
